@@ -2,6 +2,7 @@ package com.partha.springboot.service.impl;
 
 import com.partha.springboot.dto.EmployeeDto;
 import com.partha.springboot.entity.Employee;
+import com.partha.springboot.exception.ResourceNotFoundException;
 import com.partha.springboot.mapper.EmployeeMapper;
 import com.partha.springboot.repository.EmployeeRepository;
 import com.partha.springboot.service.EmployeeService;
@@ -33,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getEmployeeById(Long id){
-        Employee employee = employeeRepository.findById(id).get();
+        Employee employee = employeeRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee doesn't exist with id: " + id));
         //return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail());
         //return modelMapper.map(employee, EmployeeDto.class);
         return EmployeeMapper.MAPPER.mapToEmployeeDto(employee);
