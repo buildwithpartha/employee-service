@@ -1,5 +1,6 @@
 package com.partha.springboot.controller;
 
+import com.partha.springboot.dto.ApiResponseDto;
 import com.partha.springboot.dto.EmployeeDto;
 import com.partha.springboot.service.EmployeeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +23,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id){
+    public ResponseEntity<ApiResponseDto> getEmployeeById(@PathVariable Long id){
 
         return new ResponseEntity<>(employeeService.getEmployeeById(id), HttpStatus.OK);
 
