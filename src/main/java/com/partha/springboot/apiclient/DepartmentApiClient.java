@@ -6,7 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(url = "http://localhost:8080", value = "DEPARTMENT-SERVICE")
+//@FeignClient(url = "http://localhost:8080", value = "DEPARTMENT-SERVICE")
+
+//Below annotation is for service registry with load balancer using app name
+@FeignClient(name = "department-service")
 public interface DepartmentApiClient {
 
     @GetMapping("/api/departments/{department-code}")
